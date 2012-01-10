@@ -76,16 +76,16 @@ else {
 
 // output file
 $chunksize = 1*(1024*1024);
-$bytes_send = 0;
+$bytes_sent = 0;
 if ( $fp = fopen($file,"r") ) {
 	// fast forward within file, if requested
 	if (isset($_SERVER['HTTP_RANGE'])) fseek($fp,$range);
 	// read and output the file in chunks
-	while( !feof($fp) AND (!connection_aborted()) AND ($bytes_send < $partial_length) ) {
+	while( !feof($fp) AND (!connection_aborted()) AND ($bytes_sent < $partial_length) ) {
 		$buffer = fread($fp,$chunksize);
 		print($buffer);
 		flush();
-		$bytes_send += strlen($buffer);
+		$bytes_sent += strlen($buffer);
 	}
 	fclose($fp);
 }

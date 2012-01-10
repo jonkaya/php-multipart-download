@@ -1,0 +1,2 @@
+RewriteEngine On
+RewriteRule ^key/([^/]+)/name/([^/]+)?$ index.php?key=$1&name=$2 [NC,L]

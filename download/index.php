@@ -2,11 +2,11 @@
 
 // define content path including trailing slash
 // for example, if your files are in /w/media (/w/media/file.mp4), then your content base would be /w/media/
-$content_base;
+$content_base= "/path/to/content/directory/";
 
 // full path of default content
 // if this script is called with no parameters, then this file is provided 
-$default_content;
+$default_content = "/path/to/default/file.mp4";
 
 // disable caching
 header("Pragma: public");

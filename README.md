@@ -18,7 +18,7 @@ Dependencies
 
 - Apache setup and configured with PHP and .htaccess support.
 - Apache must support URL rewrites.
-- $content_base and ```$default_content``` must be included in PHP ```open_base()``` path.
+- ```$content_base``` and ```$default_content``` must be included in PHP ```open_base()``` path.
 - PHP must be able to run code via ```exec()``` [PHP ```filesize()``` int overflow workaround]
 - The 'file' command must be installed (on most Linux systems by default) [mime type detection]
 

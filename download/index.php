@@ -1,5 +1,9 @@
 <?php 
 
+#########################################################
+# SETTINGS
+#########################################################
+
 // define content path including trailing slash
 // for example, if your files are in /w/media (/w/media/file.mp4), then your content base would be /w/media/
 $content_base= "/path/to/content/directory/";
@@ -7,6 +11,16 @@ $content_base= "/path/to/content/directory/";
 // full path of default content
 // if this script is called with no parameters, then this file is provided 
 $default_content = "/path/to/default/file.mp4";
+
+// path to 'file' command
+$file_cmd = "/opt/bin/file";
+
+// download file chunk size (in bytes)
+$chunksize = 1*(1024*1024);
+
+#########################################################
+# SCRIPT, DO NOT CHANGE BELOW THIS LINE
+#########################################################
 
 // disable caching
 header("Pragma: public");
@@ -28,14 +42,14 @@ if ( isset($_REQUEST["key"]) ) {
 	if ( $file = base64_decode($_REQUEST["key"],TRUE) ) {
 		$file = $content_base.$file;
 	}
-	else die("Invalid file key!");
+	else die("Invalid download key!");
 } else $file = $default_content;
 
 // check for valid file
 if ( !file_exists($file) ) die("File does not exist!");
 
 // detect mime type
-$mime = exec("/opt/bin/file -i -b '".$file."'");
+$mime = exec("$file_cmd -i -b '".$file."'");
 if ( $clean = strstr($mime,";",TRUE) ) {
 	$mime = $clean;
 }
@@ -75,7 +89,6 @@ else {
 }
 
 // output file
-$chunksize = 1*(1024*1024);
 $bytes_sent = 0;
 if ( $fp = fopen($file,"r") ) {
 	// fast forward within file, if requested

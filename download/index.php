@@ -66,8 +66,8 @@ if ( isset($_SERVER["HTTP_RANGE"]) ) {
 
 	$partial_length = $range_end-$range+1;
 	header("HTTP/1.1 206 Partial Content");
-    header("Content-Length: $partial_length");
-    header("Content-Range: bytes ".($range-$range_end/$size));
+	header("Content-Length: $partial_length");
+	header("Content-Range: bytes ".($range-$range_end/$size));
 }
 else {
 	$partial_length = $size;

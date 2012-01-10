@@ -29,7 +29,7 @@ This script tricks the web browser/downloader into thinking that the file being 
 is a simple directory based download. Here's how it works.
 
 1. Define your $content_base. If the file you want to download is in /w/media/file.mp4, then your 
-$content_base would be /w/media/.
+```$content_base = /w/media/```.
 
 2. Setup your download directory. Drop the entire download directory into your web root. For example, if
 your web root is /w/web then your download directory could be /w/web/download. So, now you can call the 
